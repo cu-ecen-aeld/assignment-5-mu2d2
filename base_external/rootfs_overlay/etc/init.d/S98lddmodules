@@ -24,7 +24,7 @@ start() {
     # scull - character device driver with multiple minor devices
     # Based on scull_load reference script in scull/scull_load
     printf "Loading scull: "
-    insmod ${MODULES_DIR}/scull/scull.ko || { echo "FAILED"; exit 1; }
+    insmod ${MODULES_DIR}/scull.ko || { echo "FAILED"; exit 1; }
 
     # Retrieve the dynamically allocated major number from /proc/devices
     MAJOR=$(awk "\$2==\"scull\" {print \$1}" /proc/devices)
@@ -44,7 +44,7 @@ start() {
     # faulty - character device driver that intentionally causes a kernel oops
     # Based on module_load reference script in misc-modules/module_load
     printf "Loading faulty: "
-    insmod ${MODULES_DIR}/misc-modules/faulty.ko || { echo "FAILED"; exit 1; }
+    insmod ${MODULES_DIR}/faulty.ko || { echo "FAILED"; exit 1; }
 
     MAJOR=$(awk "\$2==\"faulty\" {print \$1}" /proc/devices)
     rm -f /dev/faulty
